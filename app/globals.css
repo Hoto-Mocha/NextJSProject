@@ -54,6 +54,8 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
+/* ------------------------------------------------------------------- */
+
 .shopBoxContainer {
   display: flex;           /* 가로로 배열 */
   /* justify-content: space-between; 각 요소를 동일한 간격으로 분배 */
@@ -73,6 +75,18 @@
   min-width: 250px;
   background-color: skyblue;
   border-radius: 5px;
+  text-decoration: none;  /* 밑줄 제거 */
+  color: black;
+  font-weight: bold;
+  transition: transform 0.3s;
+}
+
+.shopBox:hover {
+  transform: scale(1.05);
+}
+
+.shopBox:active {
+  transform: scale(0.95);
 }
 
 .shopImg {
@@ -101,7 +115,7 @@
   justify-content: center; /* 텍스트를 가로로 가운데 정렬 */
 }
 
-
+/* ------------------------------------------------------------------- */
 
 .loginContainer {
   display: flex;
@@ -128,6 +142,90 @@
   padding: 0;
 }
 
-.loginForm {
-  
+.loginForm h3 {
+  margin: 0;
 }
+
+/* ------------------------------------------------------------------- */
+
+.registerBox {
+  display: flex;
+  flex-direction: column;  /* 세로로 나열 */
+  height: 100%;            /* 부모 컨테이너의 전체 높이를 차지 */
+  width: 50%;
+  height: 50vh;
+  border: 3px solid black;
+  border-radius: 5px;
+  padding: 15px;
+  align-items: center;
+}
+
+.registerBox h2 {
+  margin: 0;
+  margin-bottom: 15px;
+}
+
+.registerBox .generalBtn {
+  margin-top: 10px;
+}
+
+.registerSelectBox {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-evenly; /*각 요소를 동일한 간격으로 분배*/
+  flex-grow: 1;
+}
+
+.registerSelectBtn {
+  width: 45%;
+  height: 100%;
+  background-color: skyblue;
+  border: 0;
+  border-radius: 2px;
+  color: white;
+  font-weight: bold;
+  text-decoration: none;  /* 밑줄 제거 */
+  font-size: 40px;        /* 적절한 폰트 크기 설정 */
+  display: flex;          /* flexbox 사용 */
+  justify-content: center;/* 가로 중앙 정렬 */
+  align-items: center;    /* 세로 중앙 정렬 */
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.registerSelectBtn:hover {
+  background-color: cyan;
+  color: white;
+  transform: scale(1.05);
+}
+
+.registerSelectBtn:active {
+  background-color: blue;
+  color: white;
+  transform: scale(0.95);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.registerForm h3 {
+  margin: 0;
+}
+
+.registerInput {
+  width: 200px;
+  height: 26px;
+  padding: 0;
+}
+
+.registerTelInput {
+  width: 200px;
+  height: 26px;
+  padding: 0;
+}
+
+.registerSelect {
+  width: 62px;
+  height: 26px;
+  padding: 0;
+}
+
+/* ------------------------------------------------------------------- */

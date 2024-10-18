@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Home() {
   return (
     <div>
@@ -7,15 +9,14 @@ export default function Home() {
       <div className="loginContainer">
         <div className="loginBox">
           <h2>로그인 정보를 입력하세요.</h2>
-          <form className="loginForm">
+          <form className="loginForm" action="">
             <h3>아이디</h3>
             <input className="loginInput" placeholder="ID..."></input>
             <h3>비밀번호</h3>
             <input type="password" className="loginInput" placeholder="PW..."></input>
             <button type="submit" className="generalBtn">로그인</button>
           </form>
-
-          <button className="generalBtn">회원 가입</button>
+          <Link className="generalBtn" href='/register'>회원 가입</Link>
         </div>
       </div>
     </div>

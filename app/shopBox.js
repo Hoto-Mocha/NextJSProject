@@ -1,6 +1,10 @@
+import Link from "next/link"
+
 export default function ShopBox({ item }) {
+    let url = '/shop/'+item.no
+    console.log(item)
     return (
-        <div className="shopBox">
+        <Link className="shopBox" href={url} >
             <div className="shopImg">
                 <p>매장 이미지</p>
             </div>
@@ -9,6 +13,6 @@ export default function ShopBox({ item }) {
                 <p>{item.address}</p>
                 <p>{item.seat}</p>
             </div>
-        </div>
+        </Link>
     )
 }
