@@ -1,5 +1,8 @@
-export default function MyPage() {
-    let session = { id: 'hong', pw: '1234', name: '홍길동', tel: '01012341234', shopTel: '' }
+import { authOptions } from "@/pages/api/auth/[...nextauth]";
+import { getServerSession } from "next-auth";
+
+export default async function MyPage() {
+    const session = await getServerSession(authOptions);
     return (
         <div>
             <div className="titleBG">
@@ -8,23 +11,22 @@ export default function MyPage() {
             <div className="loginContainer">
                 <div className="registerBox">
                     <h2>마이페이지</h2>
-                    <form className="registerForm" action="">
+                    <form className="registerForm" action="/api/auth/member" method="POST">
+                        <input name="_method" type="hidden" defaultValue="PUT" />
+                        {/* 세션 영역 */}
+                        <input name="session_type" type="hidden" defaultValue={session.user.type} />
+                        <input name="session_id" type="hidden" defaultValue={session.user.id} />
+                        <input name="session_tel" type="hidden" defaultValue={session.user.tel} />
+                        {/* 입력 영역 */}
                         <h3>아이디</h3>
-                        <input className="registerInput" placeholder="ID..." value={session.id}></input>
+                        <input name="id" className="registerInput" placeholder="ID..." defaultValue={session.user.id}></input>
                         <h3>비밀번호</h3>
-                        <input type="password" className="registerInput" placeholder="PW..."></input>
-                        <h3>비밀번호 확인</h3>
-                        <input type="password" className="registerInput" placeholder="PW 확인..."></input>
+                        <input name="pw" type="password" className="registerInput" placeholder="PW..."></input>
                         <h3>성명</h3>
-                        <input className="registerInput" placeholder="이름..." value={session.name}></input>
+                        <input name="name" className="registerInput" placeholder="이름..." defaultValue={session.user.name}></input>
                         <h3>전화번호</h3>
-                        <input type="tel" maxlength="11" className="registerTelInput" value={session.tel}></input>
-                        {
-                            session.shopTel ? <>
-                                <h3>매장 대표 전화번호</h3>
-                                <input type="tel" maxlength="11" className="registerTelInput" value={session.shopTel}></input>
-                            </> : <></>
-                        }
+                        <input name="tel" type="tel" maxLength="11" className="registerTelInput" defaultValue={session.user.tel}></input>
+                        <button type="submit" className="generalBtn">수정하기</button>
                     </form>
                 </div>
             </div>

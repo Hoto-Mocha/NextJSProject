@@ -9,15 +9,16 @@ export default function Home() {
             <div className="loginContainer">
                 <div className="registerBox">
                     <h2>회원 정보</h2>
-                    <form className="registerForm" action="/api/member-admin" method="POST">
+                    <form className="registerForm" action="/api/auth/member" method="POST">
+                        <input type="hidden" name="type" defaultValue='ADMIN'/>
                         <h3>아이디</h3>
                         <input name="id" className="registerInput" placeholder="ID..."></input>
                         <h3>비밀번호</h3>
                         <input name="pw" type="password" className="registerInput" placeholder="PW..."></input>
                         <h3>전화번호</h3>
-                        <input name="tel" type="tel" maxlength="11" className="registerTelInput"></input>
+                        <input name="tel" type="tel" maxLength="11" className="registerTelInput"></input>
                         <h3>매장 대표 전화번호</h3>
-                        <input name="shopTel" type="tel" maxlength="11" className="registerTelInput"></input>
+                        <input name="shopTel" type="tel" maxLength="11" className="registerTelInput"></input>
                         <h3>성명</h3>
                         <input name="name" className="registerInput" placeholder="이름..."></input>
 

@@ -11,7 +11,7 @@ export default function DetailLink() {
     return (
         <div>
             <div className="titleBG">
-                <h1 className="title">회원가입이 완료되지 않았습니다.</h1>
+                <h1 className="title">회원 가입 페이지</h1>
             </div>
             <div className="loginContainer">
                 <div className="registerBox">
