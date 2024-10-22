@@ -5,7 +5,7 @@ import ShopDetail from "./ShopDetail";
 import SeatBtn from "./SeatBtn";
 import { useState } from "react";
 
-export default function ShopPage({name, address, tel, seatArr}) {
+export default function ShopPage({name, address, tel, seatArr, shopNo}) {
     const [selectedSeat, setSelectedSeat] = useState({no:-1, state:'', bookId:''});
     return (
         <div>
@@ -29,10 +29,31 @@ export default function ShopPage({name, address, tel, seatArr}) {
                 <div className="bookBox">
                     <h3>좌석 정보</h3>
                     <p>좌석 번호: {selectedSeat.no == -1 ? '' : selectedSeat.no+1}</p>
-                    <p>상태: {selectedSeat.state}</p>
-                    <button className="generalBtn" style={{width:"100%"}}>예약하기</button>
+                    <p>상태: {seatState(selectedSeat.state)}</p>
+                    {bookable(selectedSeat.state) && <form action="/api/book" method="GET">
+                        <input type='hidden' defaultValue={shopNo} name="shopNo"/>
+                        <input type='hidden' defaultValue={selectedSeat.no} name="seatNo"/>
+                        <button type="submit" style={{width:"100%", textAlign:'center', padding:0}}>예약하기</button>
+                    </form>}
                 </div>
             </div>
         </div>
     )
+}
+
+function seatState(state) {
+    if (state == 'VACANT') {
+        return '비어있음'
+    }
+    if (state == 'BOOKED') {
+        return '예약'
+    }
+    if (state == 'OCCUPIED') {
+        return '점유'
+    }
+}
+
+function bookable(state) {
+    if (state == 'VACANT') return true
+    else return false
 }

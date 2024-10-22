@@ -11,18 +11,10 @@ export default async function Detail(props) {
     let shop = await db.collection('shop').findOne({ no: parseInt(props.params.shopNo) })
 
     let seatArr = shop.seat ? [...shop.seat] : []
-    seatArr.push({no:seatArr.length, state:'VACANT', bookId:''})
-    seatArr.push({no:seatArr.length, state:'OCCUPIED', bookId:''})
-    seatArr.push({no:seatArr.length, state:'VACANT', bookId:''})
-    seatArr.push({no:seatArr.length, state:'BOOKED', bookId:''})
-    seatArr.push({no:seatArr.length, state:'VACANT', bookId:''})
-    seatArr.push({no:seatArr.length, state:'VACANT', bookId:''})
-    seatArr.push({no:seatArr.length, state:'VACANT', bookId:''})
-    seatArr.push({no:seatArr.length, state:'VACANT', bookId:''})
 
     return (
         <div>
-            <ShopPage session={session} name={shop.name} address={shop.address} tel={shop.tel} seatArr={seatArr}/>
+            <ShopPage session={session} name={shop.name} address={shop.address} tel={shop.tel} seatArr={seatArr} shopNo={shop.no}/>
         </div>
     )
 }
