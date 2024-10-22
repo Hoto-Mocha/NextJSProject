@@ -5,6 +5,8 @@ export default async function AddShop() {
 
     const session = await getServerSession(authOptions);
 
+    const defaultTel = session ? session.user.tel : ''
+
     return (
         <div>
             <div className="titleBG">
@@ -18,7 +20,7 @@ export default async function AddShop() {
                         <h3>매장 이름</h3>
                         <input className="registerInput" name="name" />
                         <h3>매장 전화번호</h3>
-                        <input className="registerInput" name="tel" />
+                        <input className="registerInput" name="tel" defaultValue={defaultTel} />
                         <h3>매장 주소</h3>
                         <input className="registerInput" name="address" />
                         <button className="generalBtn" type="submit">등록하기</button>

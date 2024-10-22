@@ -19,8 +19,6 @@ export default async function Home() {
         {session ? <h1 className="title">반갑습니다. {session.user.name}님.</h1> : <h1 className="title">매장 좌석 확인 사이트</h1>}
       </div>
       <div className="divCenter">
-        <input className="searchInput" placeholder="검색..."></input>
-        <button className="generalBtn" style={{ marginLeft: '10px' }}>검색</button>
         {session ? <LogoutBtn /> : <LoginBtn />}
         {!session && <Link className="generalBtn" href='/register' style={{ marginLeft: '10px' }}>회원 가입</Link>}
         {session && <Link className="generalBtn" href='/mypage' style={{ marginLeft: '10px' }}>마이페이지</Link>}

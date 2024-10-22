@@ -22,8 +22,8 @@ export default function LogoutPage() {
             </div>
             <div className="loginContainer">
                 <div className="registerBox">
-                    <h4>수정 완료</h4>
-                    <p>수정 완료. 로그아웃 중...</p>
+                    <h4>수정/탈퇴 완료</h4>
+                    <p>로그아웃 중...</p>
                 </div>
             </div>
         </div>

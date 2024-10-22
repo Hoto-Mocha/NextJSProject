@@ -112,6 +112,21 @@ export default async function handler(req, res) {
 
         return res.status(200).redirect(302, '/mypage/logout')
     }
+
+    if (method == 'DELETE') {
+        console.log("회원 탈퇴 기능 실행")
+        console.log(req.body)
+        let dbCollection = ''
+        if (req.body.session_type == "ADMIN") {
+            dbCollection = 'member_admin'
+        }
+        else {
+            dbCollection = 'member_client'
+        }
+        await db.collection(dbCollection).deleteOne({ id: req.body.session_id }) //세션 id를 바탕으로 삭제할 데이터를 찾아 제거
+        
+        return res.status(200).redirect(302, '/mypage/logout')
+    }
 }
 
 function getUpdatedFields(original, updated) {

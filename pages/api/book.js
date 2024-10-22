@@ -7,7 +7,7 @@ export default async function Book(req, res) {
     const method = req.body._method || req.method
 
     if (method == 'GET') {
-        return res.status(200).redirect(302, `/book/${req.query.shopNo}/addbook?seat=${req.query.seatNo}`)
+        return res.status(200).redirect(302, `/book/${req.query.shopNo}?seat=${req.query.seatNo}`)
     }
     if (method == 'POST') {
         let newSeat = { no: parseInt(req.body.seatNo), state: "BOOKED", bookId: req.body.bookId }

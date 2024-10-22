@@ -1,5 +1,6 @@
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import { getServerSession } from "next-auth";
+import LoginBtn from "../LoginBtn";
 
 export default async function MyPage() {
     const session = await getServerSession(authOptions);
@@ -8,7 +9,7 @@ export default async function MyPage() {
             <div className="titleBG">
                 <h1 className="title">마이페이지</h1>
             </div>
-            <div className="loginContainer">
+            {session ? <div className="loginContainer" style={{ flexDirection: 'column' }}>
                 <div className="registerBox">
                     <h2>마이페이지</h2>
                     <form className="registerForm" action="/api/auth/member" method="POST">
@@ -29,7 +30,20 @@ export default async function MyPage() {
                         <button type="submit" className="generalBtn">수정하기</button>
                     </form>
                 </div>
-            </div>
+                <div style={{ marginTop: '10px' }}>
+                    <form className="registerForm" action="/api/auth/member" method="POST">
+                        <input name="_method" type="hidden" defaultValue="DELETE" />
+                        <input name="session_type" type="hidden" defaultValue={session.user.type} />
+                        <input name="session_id" type="hidden" defaultValue={session.user.id} />
+                        <button type="submit" className="generalBtn">탈퇴하기</button>
+                    </form>
+                </div>
+            </div> : <div className="loginContainer">
+                <div className="registerBox">
+                    <h2>로그인이 필요합니다.</h2>
+                    <LoginBtn style={{marginLeft:0}}/>
+                </div>
+            </div>}
         </div>
     )
 }
