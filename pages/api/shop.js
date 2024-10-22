@@ -14,7 +14,7 @@ export default async function Shop(req, res) {
 
         console.log("maxNo", maxNo) //현재 DB에 있는 매장 정보들 중 가장 높은 no를 출력
 
-        let newShop = {no: maxNo+1, name:req.body.name, tel: req.body.tel, address: req.body.address, seat: 0, state: "CLOSED", adminId: req.body.id}
+        let newShop = {no: maxNo+1, name:req.body.name, tel: req.body.tel, address: req.body.address, seat: [{no:0, state:"VACANT", bookId:""}], state: "CLOSED", adminId: req.body.id}
         console.log(newShop)
 
         await db.collection('shop').insertOne(newShop)

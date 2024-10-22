@@ -4,9 +4,11 @@ import Legends from "./Legends";
 import ShopDetail from "./ShopDetail";
 import SeatBtn from "./SeatBtn";
 import { useState } from "react";
+import AdminMenu from "./AdminMenu";
 
-export default function ShopPage({name, address, tel, seatArr, shopNo}) {
-    const [selectedSeat, setSelectedSeat] = useState({no:-1, state:'', bookId:''});
+export default function ShopPage({ name, address, tel, seatArr, shopNo, isAdminLogined, userId }) {
+    const [selectedSeat, setSelectedSeat] = useState({ no: -1, state: '', bookId: '' });
+    console.log("isAdminLogined", isAdminLogined)
     return (
         <div>
             <div className="titleBG">
@@ -17,24 +19,29 @@ export default function ShopPage({name, address, tel, seatArr, shopNo}) {
                     <div className="seatContainer">
                         {
                             seatArr.map((item, index) => {
-                                return <SeatBtn item={item} setSelectedSeat={setSelectedSeat} key={index}/>
+                                return <SeatBtn item={item} setSelectedSeat={setSelectedSeat} key={index} />
                             })
                         }
                     </div>
                     <div className="detailContainer">
                         <Legends />
-                        <ShopDetail name={name} address={address} tel={tel}/>
+                        <ShopDetail name={name} address={address} tel={tel} />
+                        {isAdminLogined && <form action="/api/seat" method="POST">
+                            <input type="hidden" defaultValue={shopNo} name="shopNo" />
+                            <button className="generalBtn">좌석 추가하기</button>
+                        </form>}
                     </div>
                 </div>
                 <div className="bookBox">
                     <h3>좌석 정보</h3>
-                    <p>좌석 번호: {selectedSeat.no == -1 ? '' : selectedSeat.no+1}</p>
+                    <p>좌석 번호: {selectedSeat.no == -1 ? '' : selectedSeat.no + 1}</p>
                     <p>상태: {seatState(selectedSeat.state)}</p>
-                    {bookable(selectedSeat.state) && <form action="/api/book" method="GET">
-                        <input type='hidden' defaultValue={shopNo} name="shopNo"/>
-                        <input type='hidden' defaultValue={selectedSeat.no} name="seatNo"/>
-                        <button type="submit" style={{width:"100%", textAlign:'center', padding:0}}>예약하기</button>
+                    {bookable(selectedSeat.state) && !isAdminLogined && <form action="/api/book" method="GET">
+                        <input type='hidden' defaultValue={shopNo} name="shopNo" />
+                        <input type='hidden' defaultValue={selectedSeat.no} name="seatNo" />
+                        <button type="submit" style={{ width: "100%", textAlign: 'center', padding: 0 }}>예약하기</button>
                     </form>}
+                    {isAdminLogined && <AdminMenu selectedSeat={selectedSeat} shopNo={shopNo} adminId={userId}/>}
                 </div>
             </div>
         </div>

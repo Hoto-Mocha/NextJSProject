@@ -14,7 +14,11 @@ export default async function Detail(props) {
 
     return (
         <div>
-            <ShopPage session={session} name={shop.name} address={shop.address} tel={shop.tel} seatArr={seatArr} shopNo={shop.no}/>
+            <ShopPage session={session} name={shop.name} address={shop.address} tel={shop.tel} seatArr={seatArr} shopNo={shop.no} isAdminLogined={isAdminLogined(session, shop)} userId={session.user.id}/>
         </div>
     )
+}
+
+export function isAdminLogined(session, shop) {
+    return session.user.id === shop.adminId
 }

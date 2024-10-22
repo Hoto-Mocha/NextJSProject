@@ -10,9 +10,9 @@ export default async function Book(req, res) {
         return res.status(200).redirect(302, `/book/${req.query.shopNo}/addbook?seat=${req.query.seatNo}`)
     }
     if (method == 'POST') {
-        let newSeat = {no: parseInt(req.body.seatNo), state: "BOOKED", bookId: req.body.bookId} 
-        
-        db.collection('shop').updateOne(
+        let newSeat = { no: parseInt(req.body.seatNo), state: "BOOKED", bookId: req.body.bookId }
+
+        await db.collection('shop').updateOne(
             { no: parseInt(req.body.shopNo), "seat.no": parseInt(req.body.seatNo) },
             {
                 $set: {
@@ -21,6 +21,6 @@ export default async function Book(req, res) {
             }
         )
 
-        return res.status(200).redirect(302, '/shop/' + req.body.shopNo )
+        return res.status(200).redirect(302, '/shop/' + req.body.shopNo)
     }
 }
