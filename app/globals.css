@@ -128,7 +128,7 @@
 .loginBox {
   width: 50%;
   height: 50vh;
-  border: 3px solid black;
+  border: 3px solid skyblue;
   border-radius: 5px;
   padding: 15px;
 }
@@ -156,7 +156,7 @@
   height: 100%;            /* 부모 컨테이너의 전체 높이를 차지 */
   width: 50%;
   height: 50vh;
-  border: 3px solid black;
+  border: 3px solid skyblue;  
   border-radius: 5px;
   padding: 15px;
   align-items: center;
